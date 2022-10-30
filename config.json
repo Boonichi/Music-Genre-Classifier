@@ -1,0 +1,10 @@
+{
+    "random_seed" : 47,
+    "level": 3,
+    "logging": {
+        "filename": "logs/run.log",
+        "filemode": "w",
+        "level": "debug",
+        "enable_formatter": false
+    }
+}
