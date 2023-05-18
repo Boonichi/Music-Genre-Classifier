@@ -6,5 +6,15 @@
         "filemode": "w",
         "level": "debug",
         "enable_formatter": false
+    },
+    "raw_dataset" : "./mp3.pickle",
+    "prepare" :{
+        "handler" : "MP3",
+        "MP3" :{
+            "fields": {
+                "CQT" : true,
+                "Mel" : true
+            }
+        }
     }
 }

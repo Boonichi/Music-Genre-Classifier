@@ -6,6 +6,7 @@ import logging
 import json
 import time
 from datetime import timedelta
+import pickle
 
 def set_random_seed(args):
     if "torch" in sys.modules:
@@ -44,6 +45,13 @@ def load_dataset(path: str):
                 data = [json.loads(line) for line in f]
             elif ".json" in path:
                 data = json.loads(f.read())
+    elif "pickle" in path:
+        with open(path, "rb") as f:
+            data = pickle.load(f)
+    else:
+        raise NotImplementedError("Don't know hwo to load a dataset of this type")
+
+    logging.info("Loaded {} records!".format(len(data)))
     return data
 def fcall(fun):
     """
@@ -70,3 +78,8 @@ def fcall(fun):
 def parser_config(path):
     
     return load_dataset(path)
+
+def save_data(data, path):
+    with open(path, 'wb') as f:
+        pickle.dump(data, f)
+    f.close()
